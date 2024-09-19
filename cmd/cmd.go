@@ -2,11 +2,11 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/houyanzu/goforge/controllergen"
+	"github.com/houyanzu/goforge/projectgen"
+	"github.com/houyanzu/goforge/routergen"
+	"github.com/houyanzu/goforge/toolfunc"
 	"github.com/spf13/cobra"
-	"goforge/controllergen"
-	"goforge/projectgen"
-	"goforge/routergen"
-	"goforge/toolfunc"
 	"os"
 )
 

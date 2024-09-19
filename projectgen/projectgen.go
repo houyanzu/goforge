@@ -2,7 +2,7 @@ package projectgen
 
 import (
 	"fmt"
-	"goforge/constdef"
+	"github.com/houyanzu/goforge/constdef"
 	"os"
 )
 

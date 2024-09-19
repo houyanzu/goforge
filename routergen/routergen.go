@@ -2,11 +2,11 @@ package routergen
 
 import (
 	"fmt"
+	"github.com/houyanzu/goforge/constdef"
+	"github.com/houyanzu/goforge/toolfunc"
 	"go/ast"
 	"go/parser"
 	"go/token"
-	"goforge/constdef"
-	"goforge/toolfunc"
 	"os"
 	"path/filepath"
 	"strings"

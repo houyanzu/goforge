@@ -2,8 +2,8 @@ package controllergen
 
 import (
 	"fmt"
-	"goforge/constdef"
-	"goforge/toolfunc"
+	"github.com/houyanzu/goforge/constdef"
+	"github.com/houyanzu/goforge/toolfunc"
 	"os"
 	"strings"
 )

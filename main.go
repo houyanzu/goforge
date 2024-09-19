@@ -1,6 +1,6 @@
 package main
 
-import "goforge/cmd"
+import "github.com/houyanzu/goforge/cmd"
 
 func main() {
 	cmd.Execute()
