@@ -1,4 +1,4 @@
-module goforge
+module github.com/houyanzu/goforge
 
 go 1.22
 
