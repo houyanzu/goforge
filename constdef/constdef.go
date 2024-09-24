@@ -325,3 +325,74 @@ require (
 	github.com/houyanzu/work-box v1.7.3
 )
 `
+const Buildps1Content = `param(
+    [Parameter(Mandatory=$false)]
+    [string]$path,
+
+    [Parameter(Mandatory=$false)]
+    [string]$goos
+)
+
+if ([string]::IsNullOrEmpty($path)) {
+    Write-Host "Error: The 'path' parameter is not provided or is an empty string." -ForegroundColor Red
+    exit 1
+}
+
+if (-not [string]::IsNullOrEmpty($goos)) {
+    $env:GOOS = $goos
+}
+
+goforge routergen
+go build -o ./bin/ $path
+
+if (-not [string]::IsNullOrEmpty($goos)) {
+    $env:GOOS = 'windows'
+}
+`
+
+const BuildshContent = `#!/bin/sh
+
+path=""
+goos=""
+
+original_goos=$GOOS
+
+while [ "$1" != "" ]; do
+    case $1 in
+        --path )          shift
+                          path=$1
+                          ;;
+        --goos )          shift
+                          goos=$1
+                          ;;
+        * )               echo "Invalid parameter: $1"
+                          exit 1
+    esac
+    shift
+done
+
+if [ -z "$path" ]; then
+    echo "Error: The 'path' parameter is not provided or is an empty string."
+    exit 1
+fi
+
+if [ -n "$goos" ]; then
+    export GOOS=$goos
+fi
+
+goforge routergen
+if [ $? -ne 0 ]; then
+    echo "Error: goforge routergen command failed."
+    exit 1
+fi
+
+go build -o ./bin/ "$path"
+if [ $? -ne 0 ]; then
+    echo "Error: go build command failed."
+    exit 1
+fi
+
+if [ -n "$goos" ]; then
+    export GOOS=$original_goos
+fi
+`

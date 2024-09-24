@@ -22,6 +22,8 @@ var files = []string{
 	"/myconfig/myconfig.go",
 	"/.gitignore",
 	"/go.mod",
+	"/build.ps1",
+	"/build.sh",
 }
 
 func InitProject(name string) {
@@ -76,6 +78,18 @@ func InitProject(name string) {
 			}
 		case 5:
 			_, err = file.WriteString(fmt.Sprintf(constdef.GoModContent, name))
+			if err != nil {
+				fmt.Println("Error writing to file:", err)
+				return
+			}
+		case 6:
+			_, err = file.WriteString(constdef.Buildps1Content)
+			if err != nil {
+				fmt.Println("Error writing to file:", err)
+				return
+			}
+		case 7:
+			_, err = file.WriteString(constdef.BuildshContent)
 			if err != nil {
 				fmt.Println("Error writing to file:", err)
 				return

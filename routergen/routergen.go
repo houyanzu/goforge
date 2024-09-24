@@ -108,7 +108,6 @@ func Routergen(root string) {
 		return
 	}
 
-	fmt.Println("Register file generated successfully.")
 }
 
 // 递归遍历目录，处理 controller 目录中的 Go 文件
