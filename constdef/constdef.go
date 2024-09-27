@@ -342,6 +342,7 @@ if (-not [string]::IsNullOrEmpty($goos)) {
     $env:GOOS = $goos
 }
 
+go mod tidy
 goforge routergen
 go build -o ./bin/ $path
 
@@ -380,6 +381,7 @@ if [ -n "$goos" ]; then
     export GOOS=$goos
 fi
 
+go mod tidy
 goforge routergen
 if [ $? -ne 0 ]; then
     echo "Error: goforge routergen command failed."
