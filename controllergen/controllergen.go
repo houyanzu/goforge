@@ -41,6 +41,7 @@ func OperateController(root, route, action, methods string) {
 	controllerStructName := toolfunc.CapitalizeFirstLetter(fileName) + "Controller"
 
 	filePath = root + filePath
+	//fmt.Println("filePath: ", filePath)
 	switch action {
 	case "addController":
 		if toolfunc.FileExists(filePath) {
@@ -98,6 +99,7 @@ func OperateController(root, route, action, methods string) {
 		fmt.Println("Error getMethods:", err)
 		return
 	}
+	//fmt.Println("methodList", methodList)
 	for _, v := range methodList {
 		methodStr := fmt.Sprintf(constdef.ControllerFuncStr, v.HTTPMethod, controllerStructName, v.Name)
 		if v.Login {

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/houyanzu/goforge/constdef"
 	"os"
+	"os/exec"
 )
 
 var dirs = []string{
@@ -27,6 +28,19 @@ var files = []string{
 }
 
 func InitProject(name string) {
+	defer func() {
+		{
+			cmd := exec.Command("go", "get", "github.com/houyanzu/work-box@latest")
+			cmd.Dir = "./" + name
+			cmd.Stdout = nil // 不显示标准输出
+			cmd.Stderr = nil // 不显示标准错误
+
+			err := cmd.Run()
+			if err != nil {
+				return
+			}
+		}
+	}()
 	for _, dir := range dirs {
 		dir = "./" + name + dir
 		err := os.MkdirAll(dir, os.ModePerm)
